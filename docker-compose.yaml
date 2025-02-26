@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql_container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: inventory_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3305:3306"  # ใช้พอร์ต 3305 บนเครื่อง local
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:  # กำหนดให้แน่ใจว่า volume มีการประกาศใน global scope
